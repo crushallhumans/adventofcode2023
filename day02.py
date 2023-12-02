@@ -17,7 +17,6 @@ DEBUG = False
 def one_star(param_set, cube_definition, is_one_star = True):
     if is_one_star: print("---------------one_star--------------------")
     param_set = reprocess_input(param_set)
-    c = 8888
     if DEBUG: pp.pprint(param_set)
     cube_max = 0
     if cube_definition:
