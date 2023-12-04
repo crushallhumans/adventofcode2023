@@ -8,10 +8,16 @@ import re
 import sys
 import math
 import unittest
+import socket
+import hashlib
+import pprint
+import random
+from functools import reduce
+pp = pprint.PrettyPrinter()
 
 DEBUG = False
 
-def one_star(param_set):
+def one_star(param_set, is_two_star = False):
     print("---------------one_star--------------------")
     param_set = reprocess_input(param_set)
     c = 8888
@@ -37,8 +43,7 @@ def reprocess_input(param_set):
 
 
 def puzzle_text():
-    print("""
---- Day N: X ---
+    print("""--- Day N: X ---
 
 """)
 
@@ -49,8 +54,8 @@ class testCase(unittest.TestCase):
     DEBUG = True
 
     test_set = (
-        0,
-        1
+        """
+"""
     )
 
     def test_one_star(self):
@@ -78,11 +83,22 @@ if __name__ == '__main__':
 
     except:
         DEBUG = False
+
+        username = 'crushing'
+        m = hashlib.sha256()
+        hostname = socket.gethostname()
+        m.update(hostname.encode('utf8'))
+        if m.hexdigest() == 'ec7c98e2b47378ec88e1f9cce8d6ed91b9d616787c8a37023fd5c67cef1ff71f':
+            username = 'conrad.rushing'
+        print ('hostname str :',hostname)
+        print ('hostname hash:', m.hexdigest())
+
         filename_script = os.path.basename(__file__)
         print("---------------%s--------------------"%filename_script)
         filename = filename_script.split('.')[0]
         input_set = ()
-        with open("/Users/crushing/Development/crushallhumans/adventofcode2023/inputs/2023/%s.txt" % filename) as input_file:
+        
+        with open("/Users/%s/Development/crushallhumans/adventofcode2023/inputs/2023/%s.txt" % (username,filename)) as input_file:
             input_set = [input_line.strip() for input_line in input_file]
         ret = one_star(input_set)
         print (ret)
