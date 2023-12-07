@@ -12,7 +12,7 @@ import socket
 import hashlib
 import pprint
 import random
-from functools import reduce
+import time
 from functools import reduce
 from functools import cache
 from itertools import chain
@@ -165,6 +165,7 @@ if __name__ == '__main__':
     except:
         DEBUG = False
 
+
         username = 'crushing'
         m = hashlib.sha256()
         hostname = socket.gethostname()
@@ -181,8 +182,13 @@ if __name__ == '__main__':
         
         with open("/Users/%s/Development/crushallhumans/adventofcode2023/inputs/2023/%s.txt" % (username,filename)) as input_file:
             input_set = [input_line.strip() for input_line in input_file]
+
+        start = (time.time() * 1000)
         ret = one_star(input_set)
         print (ret)
+        print ('elapsed:',(time.time() * 1000) - start,'ms')
 
+        start = (time.time() * 1000)
         ret = two_star(input_set)
         print (ret)
+        print ('elapsed:',(time.time() * 1000) - start,'ms')
