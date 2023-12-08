@@ -48,6 +48,7 @@ def two_star(param_set):
     search_op = param_set['starting_a']
     if DEBUG: pp.pprint(param_set)
 
+    # smarter way - the shortest path is the lowest common multiple of all the paths
     paths = []
     for start in search_op:
         path = 0
@@ -60,8 +61,8 @@ def two_star(param_set):
                 turn_counter = 0
             path += 1
         paths.append(path)
-
     c = math.lcm(*paths)
+
     #bruteforce - holy shit that didn't work, 30m = 2.5B rounds, 10^13 rounds estimate for complete
     # while True:
     #     search_op_current = search_op.copy()
